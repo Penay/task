@@ -1,0 +1,39 @@
+<% unless @tasks.empty? | @tasks.nil? %>
+<h2>Listing tasks</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Owners</th>
+    <th>Shared by</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td class="centered text"><%= task.name %></td>
+    <td class="centered text "> <% task.users.each do |user| %>
+        <p> <%= user.email %> </p>
+        <% end %>
+    </td>
+    <td class="centered text"><%= task.shared_by %></td>
+    <td class="centered text "><%= link_to 'Show', task, class: "btn btn-info" %></td>
+    <td class="centered text"><%= link_to 'Edit', edit_task_path(task), class: "btn btn-warning" %></td>
+    <td class="centered text"><%= link_to 'Share', share_task_path(task), class: "btn btn-primary" %></td>
+    <td class="centered text"><%= button_to "Delete", task, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
+    %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Create New Task', new_task_path, class: "margin-top-20" %>
+<% else %>
+<p>You have no tasks yet. You can create them using link below.</p>
+<br>
+<%= link_to 'Create New Task', new_task_path, class: "margin-top-20" %>
+
+<% end %>
+

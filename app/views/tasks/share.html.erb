@@ -1,0 +1,12 @@
+<h2>Share task</h2>
+<p>
+	<b>Share task with:</b>
+</p>
+<%= form_tag( share_task_path, :method => :put) do %>
+
+	<%= select_tag "owner", options_from_collection_for_select(@user, 'email', 'email') %>
+
+	<%= submit_tag "Add owner", class: "btn btn-primary" %>
+
+<% end %>
+

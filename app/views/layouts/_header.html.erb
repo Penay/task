@@ -1,0 +1,29 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+          <%= link_to "Task App", root_path, id: "logo" %>
+          <nav>
+            <ul class="nav pull-right">
+              
+       <% if signed_in? %>
+       <li  class="email">Hello, <%= current_user.email%></li>
+       <li>
+        
+        <%= link_to('My tasks', tasks_path)  %>  
+        </li>
+        <li>
+        <%= link_to('Logout', signout_path, method: "delete") %>        
+        </li>
+      <% else %>
+        <li>
+          <li><%= link_to "Home", root_path %></li>
+          
+          <li>
+        <%= link_to('Login', signin_path)  %>  
+        </li>
+      <% end %>
+            </ul>
+        </nav>
+      </div>
+    </div>
+</header>
